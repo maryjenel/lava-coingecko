@@ -27,19 +27,12 @@ const MarketsScreen = () => {
 
   const [search, setSearch] = React.useState<string>("");
 
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    refetch,
-    isRefetching,
-    isLoading,
-  } = useFetchCoins({
-    vs_currency: "usd",
-    order: "market_cap_desc",
-    per_page: "20",
-  });
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, refetch, isRefetching, isLoading } =
+    useFetchCoins({
+      vs_currency: "usd",
+      order: "market_cap_desc",
+      per_page: "20",
+    });
 
   if (isLoading && !data) {
     return <ActivityIndicator />;
@@ -83,20 +76,15 @@ const MarketsScreen = () => {
         renderItem={renderItem}
         onEndReached={() => {
           const filtered = search.trim() !== "" ? filteredCoins.length : null;
-          const allowPagination =
-            search.trim() === "" || (filtered && filtered > 0);
+          const allowPagination = search.trim() === "" || (filtered && filtered > 0);
           if (allowPagination && hasNextPage && !isFetchingNextPage) {
             fetchNextPage();
           }
         }}
         onEndReachedThreshold={0.5}
-        refreshControl={
-          <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
-        }
+        refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} />}
         ListFooterComponent={
-          isFetchingNextPage ? (
-            <ActivityIndicator style={{ margin: 16 }} />
-          ) : null
+          isFetchingNextPage ? <ActivityIndicator style={{ margin: 16 }} /> : null
         }
       />
     </View>

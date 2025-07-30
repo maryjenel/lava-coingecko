@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Coin } from "../services/types";
 import { FLEX_FILL, FLEX_ROW } from "../theme/common";
+import spacing from "../theme/spacing";
 
 export interface MarketItemProps {
   onPress: () => void;
@@ -16,19 +17,8 @@ const MarketItem = ({ item, onPress }: MarketItemProps) => {
           <Text>
             {item.name} ({item.symbol.toUpperCase()})
           </Text>
-          {item.current_price && (
-            <Text>${item.current_price.toLocaleString()}</Text>
-          )}
+          {item.current_price && <Text>${item.current_price.toLocaleString()}</Text>}
         </View>
-        {/* {item.price_change_percentage_24h && (
-          <Text
-            style={{
-              color: item.price_change_percentage_24h >= 0 ? "green" : "red",
-            }}
-          >
-            {item.price_change_percentage_24h?.toFixed(2)}%
-          </Text>
-        )} */}
       </View>
     </TouchableOpacity>
   );
@@ -36,7 +26,7 @@ const MarketItem = ({ item, onPress }: MarketItemProps) => {
 
 const styles = StyleSheet.create({
   itemContainer: {
-    padding: 16,
+    padding: spacing[4],
     borderBottomWidth: 1,
     borderColor: "#ccc",
   },
@@ -47,7 +37,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 32,
     height: 32,
-    marginRight: 8,
+    marginRight: spacing[2],
   },
   coinInfo: {
     ...FLEX_FILL,

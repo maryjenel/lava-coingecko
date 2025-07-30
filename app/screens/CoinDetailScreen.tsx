@@ -24,16 +24,10 @@ const CoinDetailScreen = () => {
             {details.name} ({details.symbol.toUpperCase()})
           </Text>
           <Text>Current Price: ${details.market_data.current_price.usd}</Text>
+          <Text>Market Cap: ${details.market_data.market_cap.usd.toLocaleString()}</Text>
+          <Text>Total Supply: {details.market_data.total_supply?.toLocaleString() ?? "N/A"}</Text>
           <Text>
-            Market Cap: ${details.market_data.market_cap.usd.toLocaleString()}
-          </Text>
-          <Text>
-            Total Supply:{" "}
-            {details.market_data.total_supply?.toLocaleString() ?? "N/A"}
-          </Text>
-          <Text>
-            Circulating Supply:{" "}
-            {details.market_data.circulating_supply?.toLocaleString() ?? "N/A"}
+            Circulating Supply: {details.market_data.circulating_supply?.toLocaleString() ?? "N/A"}
           </Text>
         </View>
       ) : (
